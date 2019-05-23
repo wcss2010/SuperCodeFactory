@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -31,27 +32,31 @@ namespace SuperCodeFactoryUILib.Forms
         #endregion Constructor
 
         #region publicMethod
-        public void Progression(EventHandler<EventArgs> method, int maxWaitTime, string waitMessage)
+        public void Progression(EventHandler<EventArgs> method, int maxWaitTime, string waitMessage, Font waitMessageFont, Color waitMessageForeColor)
         {
             maxWaitTime *= 1000;
-            Initialize(method, maxWaitTime, waitMessage);
+            Initialize(method, maxWaitTime, waitMessage, waitMessageFont, waitMessageForeColor);
+        }
+        public void Progression(EventHandler<EventArgs> method, int maxWaitTime, string waitMessage)
+        {
+            Progression(method, maxWaitTime, waitMessage, lbMessage.Font, lbMessage.ForeColor);
         }
         public void Progression(EventHandler<EventArgs> method, int maxWaitTime)
         {
             maxWaitTime *= 1000;
             string waitMessage = "请稍后";
-            Initialize(method, maxWaitTime, waitMessage);
+            Initialize(method, maxWaitTime, waitMessage, lbMessage.Font, lbMessage.ForeColor);
         }
         public void Progression(EventHandler<EventArgs> method, string waitMessage)
         {
             int maxWaitTime = 90 * 1000;
-            Initialize(method, maxWaitTime, waitMessage);
+            Initialize(method, maxWaitTime, waitMessage, lbMessage.Font, lbMessage.ForeColor);
         }
         public void Progression(EventHandler<EventArgs> method)
         {
             int maxWaitTime = 90 * 1000;
             string waitMessage = "请稍后";
-            Initialize(method, maxWaitTime, waitMessage);
+            Initialize(method, maxWaitTime, waitMessage, lbMessage.Font, lbMessage.ForeColor);
         }
         /// <summary>
         /// ProgressUpdateNumber
@@ -85,11 +90,13 @@ namespace SuperCodeFactoryUILib.Forms
         #endregion publicMethod
 
         #region Initialize
-        private void Initialize(EventHandler<EventArgs> method, int maxWaitTime, string waitMessage)
+        private void Initialize(EventHandler<EventArgs> method, int maxWaitTime, string waitMessage, Font waitMessageFont, Color waitMessageForeColor)
         {
             InitializeComponent();
             //initialize form
             this.lbMessage.Text = waitMessage;
+            this.lbMessage.ForeColor = waitMessageForeColor;
+            this.lbMessage.Font = waitMessageFont;
             _IsClose = false;
             //_Timer = new Timer();
             _Timer.Interval = _EffectTime / _EffectCount;
