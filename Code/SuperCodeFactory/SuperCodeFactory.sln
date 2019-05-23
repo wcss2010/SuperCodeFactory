@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperCodeFactory", "SuperCo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperCodeFactoryLib", "SuperCodeFactoryLib\SuperCodeFactoryLib.csproj", "{391FD281-1611-4A82-9853-26A121AFDE84}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperCodeFactoryUILib", "SuperCodeFactoryUILib\SuperCodeFactoryUILib.csproj", "{63864249-BBCD-4B39-83DE-D26C7E63FDC1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{391FD281-1611-4A82-9853-26A121AFDE84}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{391FD281-1611-4A82-9853-26A121AFDE84}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{391FD281-1611-4A82-9853-26A121AFDE84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63864249-BBCD-4B39-83DE-D26C7E63FDC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63864249-BBCD-4B39-83DE-D26C7E63FDC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63864249-BBCD-4B39-83DE-D26C7E63FDC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63864249-BBCD-4B39-83DE-D26C7E63FDC1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
