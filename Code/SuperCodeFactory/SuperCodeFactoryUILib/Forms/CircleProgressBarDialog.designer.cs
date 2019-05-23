@@ -37,7 +37,7 @@
             this.lbMessage.AutoSize = true;
             this.lbMessage.BackColor = System.Drawing.Color.Gray;
             this.lbMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbMessage.ForeColor = System.Drawing.Color.White;
+            this.lbMessage.ForeColor = System.Drawing.Color.LightBlue;
             this.lbMessage.Location = new System.Drawing.Point(113, 177);
             this.lbMessage.Name = "lbMessage";
             this.lbMessage.Size = new System.Drawing.Size(140, 20);

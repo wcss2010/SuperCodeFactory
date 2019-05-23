@@ -5,6 +5,9 @@ using System.Windows.Forms;
 
 namespace SuperCodeFactoryUILib.Controls
 {
+    /// <summary>
+    /// 圆形进度条控件
+    /// </summary>
     public partial class CircleProgressBar : UserControl
     {
         private int progress;

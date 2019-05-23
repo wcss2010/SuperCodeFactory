@@ -5,6 +5,9 @@ using System.Windows.Forms;
 
 namespace SuperCodeFactoryUILib.Forms
 {
+    /// <summary>
+    /// 圆形进度条显示对话框
+    /// </summary>
     public partial class CircleProgressBarDialog : Form
     {
         #region Variable
@@ -25,6 +28,37 @@ namespace SuperCodeFactoryUILib.Forms
         public string Message { get; private set; }
         public int TimeSpan { get; set; }
         public bool FormEffectEnable { get; set; }
+
+        private Font _defaultLabelFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        /// <summary>
+        /// 初始标签字体
+        /// </summary>
+        public Font DefaultLabelFont
+        {
+            get { return _defaultLabelFont; }
+            set { _defaultLabelFont = value; }
+        }
+        private Color _defaultLabelForeColor = System.Drawing.Color.LightBlue;
+        /// <summary>
+        /// 初始标签字体色
+        /// </summary>
+        public Color DefaultLabelForeColor
+        {
+            get { return _defaultLabelForeColor; }
+            set { _defaultLabelForeColor = value; }
+        }
+
+        private bool _IsSupportedTimoutClose = false;
+        /// <summary>
+        /// 是否支持超时自动结束
+        /// </summary>
+        public bool IsSupportedTimoutClose
+        {
+            get { return _IsSupportedTimoutClose; }
+            set { _IsSupportedTimoutClose = value; }
+        }
+
+
         #endregion Variable
 
         #region Constructor
@@ -39,24 +73,24 @@ namespace SuperCodeFactoryUILib.Forms
         }
         public void Progression(EventHandler<EventArgs> method, int maxWaitTime, string waitMessage)
         {
-            Progression(method, maxWaitTime, waitMessage, lbMessage.Font, lbMessage.ForeColor);
+            Progression(method, maxWaitTime, waitMessage, DefaultLabelFont, DefaultLabelForeColor);
         }
         public void Progression(EventHandler<EventArgs> method, int maxWaitTime)
         {
             maxWaitTime *= 1000;
             string waitMessage = "请稍后";
-            Initialize(method, maxWaitTime, waitMessage, lbMessage.Font, lbMessage.ForeColor);
+            Initialize(method, maxWaitTime, waitMessage, DefaultLabelFont, DefaultLabelForeColor);
         }
         public void Progression(EventHandler<EventArgs> method, string waitMessage)
         {
             int maxWaitTime = 90 * 1000;
-            Initialize(method, maxWaitTime, waitMessage, lbMessage.Font, lbMessage.ForeColor);
+            Initialize(method, maxWaitTime, waitMessage, DefaultLabelFont, DefaultLabelForeColor);
         }
         public void Progression(EventHandler<EventArgs> method)
         {
             int maxWaitTime = 90 * 1000;
             string waitMessage = "请稍后";
-            Initialize(method, maxWaitTime, waitMessage, lbMessage.Font, lbMessage.ForeColor);
+            Initialize(method, maxWaitTime, waitMessage, DefaultLabelFont, DefaultLabelForeColor);
         }
         /// <summary>
         /// ProgressUpdateNumber
@@ -125,11 +159,14 @@ namespace SuperCodeFactoryUILib.Forms
             {
                 if (!this._AsyncResult.IsCompleted)
                 {
-                    if (_WaitTime > _MaxWaitTime)
+                    if (IsSupportedTimoutClose)
                     {
-                        Message = string.Format("处理数据超时{0}秒，结束当前操作！", _MaxWaitTime / 1000);
-                        _IsClose = true;
-                        this.Close();
+                        if (_WaitTime > _MaxWaitTime)
+                        {
+                            Message = string.Format("处理数据超时{0}秒，结束当前操作！", _MaxWaitTime / 1000);
+                            _IsClose = true;
+                            this.Close();
+                        }
                     }
                 }
                 else
