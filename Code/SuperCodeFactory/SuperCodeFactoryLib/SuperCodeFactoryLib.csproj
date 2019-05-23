@@ -91,6 +91,7 @@
     <Compile Include="Utilities\StringUtilty\StringUtil.cs" />
     <Compile Include="Utilities\StringUtilty\StringUtil.Html.cs" />
     <Compile Include="Utilities\TypeUtil.cs" />
+    <Compile Include="Utilities\XmlSerializeUtil.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Db\" />
