@@ -30,12 +30,12 @@
         {
             this.SuspendLayout();
             // 
-            // circleprogressBar
+            // CircleProgressBar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.DoubleBuffered = true;
-            this.Name = "circleprogressBar";
+            this.Name = "CircleProgressBar";
             this.Size = new System.Drawing.Size(240, 236);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.circleprogressbar_Paint);
             this.ResumeLayout(false);
