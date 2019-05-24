@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SuperCodeFactory</RootNamespace>
     <AssemblyName>SuperCodeFactory</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,19 +33,75 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EmitMapper">
+      <HintPath>..\..\..\dll\EmitMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="LiteDB">
+      <HintPath>..\..\..\dll\LiteDB.dll</HintPath>
+    </Reference>
     <Reference Include="Noear.Weed3">
       <HintPath>..\..\..\dll\Noear.Weed3.dll</HintPath>
     </Reference>
+    <Reference Include="Oracle.ManagedDataAccess">
+      <HintPath>..\..\..\dll\Oracle.ManagedDataAccess.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBSchema\CachingMechanism.cs" />
+    <Compile Include="DBSchema\Database.cs" />
+    <Compile Include="DBSchema\DatabaseFactory.cs" />
+    <Compile Include="DBSchema\DatabaseType.cs" />
+    <Compile Include="DBSchema\Database\BsonHelper.cs" />
+    <Compile Include="DBSchema\Database\DAL\DbConnDAL.cs" />
+    <Compile Include="DBSchema\Database\Entity\DbConn.cs" />
+    <Compile Include="DBSchema\Database\LiteDBHelper.cs" />
+    <Compile Include="DBSchema\DataType.cs" />
+    <Compile Include="DBSchema\DbProvider\DB2\DB2Database.cs" />
+    <Compile Include="DBSchema\DbProvider\Firebird\FirebirdDatabase.cs" />
+    <Compile Include="DBSchema\DbProvider\MySql\MySqlDatabase.cs" />
+    <Compile Include="DBSchema\DbProvider\Odbc\OdbcDatabase.cs" />
+    <Compile Include="DBSchema\DbProvider\OleDb\OleDbDatabase.cs" />
+    <Compile Include="DBSchema\DbProvider\Oracle\IOraclePackage.cs" />
+    <Compile Include="DBSchema\DbProvider\Oracle\OracleDatabase.cs" />
+    <Compile Include="DBSchema\DbProvider\Oracle\OracleDataReaderWrapper.cs" />
+    <Compile Include="DBSchema\DbProvider\SQLite\SQLiteDatabase.cs" />
+    <Compile Include="DBSchema\DbProvider\Sql\SqlServerDatabase.cs" />
+    <Compile Include="DBSchema\DbSchema.cs" />
+    <Compile Include="DBSchema\DbSchemaFactory.cs" />
+    <Compile Include="DBSchema\DbSchemaProvider\DB2Schema.cs" />
+    <Compile Include="DBSchema\DbSchemaProvider\MySqlSchema.cs" />
+    <Compile Include="DBSchema\DbSchemaProvider\OleDbSchema.cs" />
+    <Compile Include="DBSchema\DbSchemaProvider\OracleSchema.cs" />
+    <Compile Include="DBSchema\DbSchemaProvider\SQLiteSchema.cs" />
+    <Compile Include="DBSchema\DbSchemaProvider\SqlServerSchema.cs" />
+    <Compile Include="DBSchema\IDbSchema.cs" />
+    <Compile Include="DBSchema\Mapping\DataReaderToObjectMapper.cs" />
+    <Compile Include="DBSchema\Mapping\MapExt.cs" />
+    <Compile Include="DBSchema\Mapping\ObjectsChangeTracker.cs" />
+    <Compile Include="DBSchema\NormalConfig.cs" />
+    <Compile Include="DBSchema\ParameterCache.cs" />
+    <Compile Include="DBSchema\SchemaObject\SOBase.cs" />
+    <Compile Include="DBSchema\SchemaObject\SOColumn.cs" />
+    <Compile Include="DBSchema\SchemaObject\SOCommand.cs" />
+    <Compile Include="DBSchema\SchemaObject\SOCommandParameter.cs" />
+    <Compile Include="DBSchema\SchemaObject\SODatabase.cs" />
+    <Compile Include="DBSchema\SchemaObject\SOIndex.cs" />
+    <Compile Include="DBSchema\SchemaObject\SOSchemaBase.cs" />
+    <Compile Include="DBSchema\SchemaObject\SOTable.cs" />
+    <Compile Include="DBSchema\SchemaObject\SOTableViewBase.cs" />
+    <Compile Include="DBSchema\SchemaObject\SOView.cs" />
+    <Compile Include="DBSchema\TransactionScopeConnections.cs" />
+    <Compile Include="DBSchema\UpdateBehavior.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,7 +121,9 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
