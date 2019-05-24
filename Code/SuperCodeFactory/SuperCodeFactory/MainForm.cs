@@ -42,5 +42,27 @@ namespace SuperCodeFactory
         {
             bar.Stop();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //System.Reflection.Assembly.LoadFrom(@"c:\System.Data.SQLite.dll");
+            try
+            {
+                DBSchema.DbSchema schemaObj = DBSchema.DbSchemaFactory.Create("System.Data.SQLite", "Data Source=c:\\myData1.db");
+                List<SuperCodeFactory.DBSchema.SchemaObject.SOTable> tableList = schemaObj.GetTableList(schemaObj.GetDatabaseList()[0]);
+                foreach (SuperCodeFactory.DBSchema.SchemaObject.SOTable table in tableList)
+                {
+                    System.Console.WriteLine(table.FullName);
+                    foreach (SuperCodeFactory.DBSchema.SchemaObject.SOColumn col in table.ColumnList)
+                    {
+                        System.Console.WriteLine(table.FullName + "---" + col.FullName + ",,,"+ col.DataType);
+                    }                    
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
     }
 }
