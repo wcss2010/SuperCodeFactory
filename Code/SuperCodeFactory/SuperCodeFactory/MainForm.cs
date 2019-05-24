@@ -13,49 +13,34 @@ namespace SuperCodeFactory
 {
     public partial class MainForm : Form
     {
+        CircleProgressBarDialog bar = new CircleProgressBarDialog();
+
         public MainForm()
         {
             InitializeComponent();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
-        {
-            CircleProgressBarDialog bar = new CircleProgressBarDialog();
-            bar.BackColor = Color.Gray;
-            bar.ProgressBarColor = Color.MediumPurple;
-            bar.ProgressBarBackColor = Color.Gray;
-            bar.ProgressBarFontColor = Color.Red;
-            bar.DefaultLabelForeColor = Color.Blue;
-            bar.DefaultLabelFont = new System.Drawing.Font("宋体", 20);
-
-            bar.ShowProgressBarDialog((obj, args) =>
+        {  
+            bar.Start(new EventHandler<CircleProgressBarEventArgs>(delegate(object thisObj, CircleProgressBarEventArgs argss)
             {
-                for (var currNum = 0; currNum <= 99; currNum++)
+                for (int k = 1; k <= 100; k++)
                 {
-                    bar.ProgressUpdate(currNum, 99);//处理过程中改变百分比
-                    Thread.Sleep(500);//耗时操作
-
-                    if (currNum == 20)
+                    if (bar.CancellationPending)
                     {
-                        bar.ProgressUpdate("AAAAAAAAAAAAAAAA");
+                        break;
                     }
 
-                    if (currNum == 30)
-                    {
-                        bar.ProgressUpdate("BBBBBBBBBBBBBBB");
-                    }
-
-                    if (currNum == 40)
-                    {
-                        bar.ProgressUpdate("CCCCCCCCCCCCCC");
-                    }
-
-                    if (currNum == 50)
-                    {
-                        bar.CloseProgressBarDialog();
-                    }
+                    bar.ReportProgress(k, 100);
+                    Thread.Sleep(1000);
+                    bar.ReportInfo("当前值:" + k);
                 }
-            }, "AAA");
+            }));
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            bar.Stop();
         }
     }
 }

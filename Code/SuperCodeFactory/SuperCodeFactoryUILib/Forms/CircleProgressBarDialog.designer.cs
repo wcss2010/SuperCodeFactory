@@ -28,63 +28,70 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.bwProgressReport = new System.ComponentModel.BackgroundWorker();
+            this.cpbProgressBar = new SuperCodeFactoryUILib.Controls.CircleProgressBar();
             this.lbMessage = new System.Windows.Forms.Label();
-            this.pb_progressbar = new SuperCodeFactoryUILib.Controls.CircleProgressBar();
             this.SuspendLayout();
+            // 
+            // bwProgressReport
+            // 
+            this.bwProgressReport.WorkerReportsProgress = true;
+            this.bwProgressReport.WorkerSupportsCancellation = true;
+            this.bwProgressReport.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwProgressReport_DoWork);
+            // 
+            // cpbProgressBar
+            // 
+            this.cpbProgressBar.BackColor = System.Drawing.Color.Gray;
+            this.cpbProgressBar.CurrentProgress = 0;
+            this.cpbProgressBar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cpbProgressBar.Font = new System.Drawing.Font("宋体", 60F);
+            this.cpbProgressBar.ForeColor = System.Drawing.Color.White;
+            this.cpbProgressBar.Location = new System.Drawing.Point(0, 0);
+            this.cpbProgressBar.Margin = new System.Windows.Forms.Padding(14);
+            this.cpbProgressBar.MaximumProgress = 100;
+            this.cpbProgressBar.Name = "cpbProgressBar";
+            this.cpbProgressBar.ProgressBarColor = System.Drawing.Color.DodgerBlue;
+            this.cpbProgressBar.Size = new System.Drawing.Size(344, 325);
+            this.cpbProgressBar.TabIndex = 0;
             // 
             // lbMessage
             // 
-            this.lbMessage.BackColor = System.Drawing.Color.Gray;
+            this.lbMessage.BackColor = System.Drawing.Color.Transparent;
             this.lbMessage.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lbMessage.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbMessage.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbMessage.Location = new System.Drawing.Point(0, 320);
+            this.lbMessage.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbMessage.ForeColor = System.Drawing.Color.White;
+            this.lbMessage.Location = new System.Drawing.Point(0, 325);
             this.lbMessage.Name = "lbMessage";
-            this.lbMessage.Size = new System.Drawing.Size(320, 40);
+            this.lbMessage.Size = new System.Drawing.Size(344, 40);
             this.lbMessage.TabIndex = 1;
-            this.lbMessage.Text = "Circle ProgressBar";
             this.lbMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pb_progressbar
-            // 
-            this.pb_progressbar.BackColor = System.Drawing.Color.Transparent;
-            this.pb_progressbar.CurrentProgress = 0;
-            this.pb_progressbar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pb_progressbar.Font = new System.Drawing.Font("宋体", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.pb_progressbar.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.pb_progressbar.Location = new System.Drawing.Point(0, 0);
-            this.pb_progressbar.Margin = new System.Windows.Forms.Padding(16, 17, 16, 17);
-            this.pb_progressbar.MaximumProgress = 100;
-            this.pb_progressbar.Name = "pb_progressbar";
-            this.pb_progressbar.ProgressBarColor = System.Drawing.Color.MidnightBlue;
-            this.pb_progressbar.Size = new System.Drawing.Size(320, 320);
-            this.pb_progressbar.TabIndex = 0;
             // 
             // CircleProgressBarDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ClientSize = new System.Drawing.Size(320, 360);
-            this.ControlBox = false;
-            this.Controls.Add(this.pb_progressbar);
+            this.BackColor = System.Drawing.Color.Gray;
+            this.ClientSize = new System.Drawing.Size(344, 365);
+            this.Controls.Add(this.cpbProgressBar);
             this.Controls.Add(this.lbMessage);
-            this.ForeColor = System.Drawing.SystemColors.Control;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "CircleProgressBarDialog";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.TransparencyKey = System.Drawing.SystemColors.ControlDark;
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.dlgCircle_progressBar_FormClosing);
-            this.Shown += new System.EventHandler(this.dlgCircle_progressBar_Shown);
+            this.Text = "进度条";
+            this.TopMost = true;
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private Controls.CircleProgressBar pb_progressbar;
+        private System.ComponentModel.BackgroundWorker bwProgressReport;
+        private Controls.CircleProgressBar cpbProgressBar;
         private System.Windows.Forms.Label lbMessage;
     }
 }
