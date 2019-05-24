@@ -16,9 +16,9 @@ namespace SuperCodeFactory.DBSchema
         /// </summary>
         /// <param name="connectionStringName">连接字符串名称</param>
         /// <returns></returns>
-        public static DbSchema Create(string connectionStringName)
+        public static DbSchema Create(DatabaseProviderType providerType, string connectionString)
         {
-            Database db = DatabaseFactory.Create(connectionStringName);
+            Database db = DatabaseFactory.Create(providerType, connectionString);
             return Create(db);
         }
 

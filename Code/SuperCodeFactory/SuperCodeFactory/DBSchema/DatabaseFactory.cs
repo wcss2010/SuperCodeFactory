@@ -23,66 +23,44 @@ namespace SuperCodeFactory.DBSchema
         /// </summary>
         /// <param name="connectionStringName"></param>
         /// <returns></returns>
-        public static Database Create(string connectionStringName)
+        public static Database Create(DatabaseProviderType providerType, string connectionString)
         {
-            CheckUtil.ArgumentNotNullOrEmpty(connectionStringName, "connectionStringName");
-            DbConnDAL dal = new DbConnDAL();
-
-            var model = dal.FindOne(connectionStringName);
-            
-            if (model == null) throw new Exception(string.Format(SuperCodeFactory.Properties.Resources.ConnectionStringNameNotFound, connectionStringName));
-
-            string connectionString = model.ConnectionString;
-            string providerName = model.ProviderName;
-            Database db = new SqlServerDatabase(connectionString);
             DbProviderFactory providerFactory = null;
+            Database db = null;
+            string providerName = Enum.GetName(typeof(DatabaseProviderType), providerType).Replace("_", ".");
 
-            if(string.IsNullOrEmpty(providerName))return db;
-
-            //if (css.ProviderName == "System.Data.OleDb")
-            //{
-            //    providerFactory = OleDbFactory.Instance;
-            //}
-            //else
-            //{
-            //    providerFactory = DbProviderFactories.GetFactory(css.ProviderName);
-            //}
-            //if (providerFactory == null) throw new Exception(string.Format(Resources.Data.DataProviderNotFound, css.ProviderName));
-
-            switch (providerName)
+            switch (providerType)
             {
-                //case "System.Data.SqlClient":
-                //    break;
-                case "System.Data.Odbc":
+                case DatabaseProviderType.System_Data_Odbc:
                     db = new OdbcDatabase(connectionString);
                     break;
-                case "System.Data.OleDb":
+                case DatabaseProviderType.System_Data_OleDb:
                     db = new OleDbDatabase(connectionString);
                     break;
-                case "System.Data.OracleClient":
+                case DatabaseProviderType.System_Data_OracleClient:
                     db = new OracleDatabase(connectionString);
                     break;
-                case "Oracle.ManagedDataAccess.Client":
+                case DatabaseProviderType.Oracle_ManagedDataAccess_Client:
                     db = new OracleDatabase(connectionString);
                     break;
-                case "Devart.Data.Oracle": //http://evget.com/zh-CN/product/954/feature.aspx  http://www.devart.com/ 
-                case "DDTek.Oracle": //http://www.datadirect.com/index.html 由于删除了版权DLL，导致该功能可能无法使用。可在QQ群：122161138中下载source_lib.zip
+                case DatabaseProviderType.Devart_Data_Oracle: //http://evget.com/zh-CN/product/954/feature.aspx  http://www.devart.com/ 
+                case DatabaseProviderType.DDTek_Oracle: //http://www.datadirect.com/index.html 由于删除了版权DLL，导致该功能可能无法使用。可在QQ群：122161138中下载source_lib.zip
                     providerFactory = DbProviderFactories.GetFactory(providerName);
                     db = new OracleDatabase(connectionString, providerFactory);
                     break;
-                case "System.Data.SQLite":
+                case DatabaseProviderType.System_Data_SQLite:
                     providerFactory = DbProviderFactories.GetFactory(providerName);
                     db = new SQLiteDatabase(connectionString, providerFactory);
                     break;
-                case "MySql.Data.MySqlClient":
+                case DatabaseProviderType.MySql_Data_MySqlClient:
                     providerFactory = DbProviderFactories.GetFactory(providerName);
                     db = new MySqlDatabase(connectionString, providerFactory);
                     break;
-                case "IBM.Data.DB2":
+                case DatabaseProviderType.IBM_Data_DB2:
                     providerFactory = DbProviderFactories.GetFactory(providerName);
                     db = new DB2Database(connectionString, providerFactory);
                     break;
-                case "FirebirdSql.Data.FirebirdClient":
+                case DatabaseProviderType.FirebirdSql_Data_FirebirdClient:
                     providerFactory = DbProviderFactories.GetFactory(providerName);
                     db = new FirebirdDatabase(connectionString, providerFactory);
                     break;
@@ -92,20 +70,22 @@ namespace SuperCodeFactory.DBSchema
 
             return db;
         }
+    }
 
-        public static Database Create()
-        {
-            string connectionStringName = string.Empty;
-            int count = ConfigurationManager.ConnectionStrings.Count;
-
-            //machine.config默认有个名为LocalSqlServer的连接字符串
-            for (int i = 0; i < count; i++)
-            {
-                connectionStringName = ConfigurationManager.ConnectionStrings[i].Name;
-            }
-
-            if (connectionStringName == string.Empty) throw new Exception(SuperCodeFactory.Properties.Resources.ConnectionStringNotConfig);
-            return Create(connectionStringName);
-        }
-    }//end class
+    /// <summary>
+    /// 数据库适配器类型
+    /// </summary>
+    public enum DatabaseProviderType
+    {
+        System_Data_Odbc,
+        System_Data_OleDb,
+        System_Data_OracleClient,
+        Oracle_ManagedDataAccess_Client,
+        Devart_Data_Oracle,
+        DDTek_Oracle,
+        System_Data_SQLite,
+        MySql_Data_MySqlClient,
+        IBM_Data_DB2,
+        FirebirdSql_Data_FirebirdClient
+    }
 }
