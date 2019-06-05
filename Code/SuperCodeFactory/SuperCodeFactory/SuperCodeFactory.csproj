@@ -42,6 +42,10 @@
     <Reference Include="LiteDB">
       <HintPath>..\..\..\dll\LiteDB.dll</HintPath>
     </Reference>
+    <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\dll\MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="Noear.Weed3">
       <HintPath>..\..\..\dll\Noear.Weed3.dll</HintPath>
     </Reference>
@@ -116,6 +120,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Templetes\library\MySql.Data.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Templetes\script\单表.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

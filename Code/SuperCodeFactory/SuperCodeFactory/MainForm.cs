@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -204,6 +205,15 @@ namespace SuperCodeFactory
             {
                 MessageBox.Show("对不起，请先配置数据库连接！");
             }
+        }
+
+        private void btnScriptDir_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Process.Start(Path.Combine(Application.StartupPath, @"Templetes\script"));
+            }
+            catch (Exception ex) { }
         }
     }
 }

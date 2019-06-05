@@ -45,6 +45,7 @@
             this.tpOneTable = new System.Windows.Forms.TabPage();
             this.txtNormal = new System.Windows.Forms.RichTextBox();
             this.txtOneTable = new System.Windows.Forms.RichTextBox();
+            this.btnScriptDir = new System.Windows.Forms.Button();
             this.plTopBar.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -100,6 +101,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnScriptDir);
             this.panel1.Controls.Add(this.btnMakeAll);
             this.panel1.Controls.Add(this.btnGetTables);
             this.panel1.Controls.Add(this.cbDbType);
@@ -237,6 +239,17 @@
             this.txtOneTable.TabIndex = 1;
             this.txtOneTable.Text = "";
             // 
+            // btnScriptDir
+            // 
+            this.btnScriptDir.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnScriptDir.Location = new System.Drawing.Point(523, 0);
+            this.btnScriptDir.Name = "btnScriptDir";
+            this.btnScriptDir.Size = new System.Drawing.Size(116, 23);
+            this.btnScriptDir.TabIndex = 5;
+            this.btnScriptDir.Text = "编辑代码生成脚本";
+            this.btnScriptDir.UseVisualStyleBackColor = true;
+            this.btnScriptDir.Click += new System.EventHandler(this.btnScriptDir_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -282,6 +295,7 @@
         private System.Windows.Forms.TabPage tpOneTable;
         private System.Windows.Forms.RichTextBox txtNormal;
         private System.Windows.Forms.RichTextBox txtOneTable;
+        private System.Windows.Forms.Button btnScriptDir;
 
     }
 }
