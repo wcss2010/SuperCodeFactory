@@ -13,56 +13,103 @@ namespace SuperCodeFactory
 {
     public partial class MainForm : Form
     {
-        CircleProgressBarDialog bar = new CircleProgressBarDialog();
-
         public MainForm()
         {
             InitializeComponent();
+
+            this.cbDbType.Text = "System.Data.SQLite";
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {  
-            bar.Start(new EventHandler<CircleProgressBarEventArgs>(delegate(object thisObj, CircleProgressBarEventArgs argss)
-            {
-                for (int k = 1; k <= 100; k++)
+        }
+
+        private void btnGetTables_Click(object sender, EventArgs e)
+        {
+            //清空树列表
+            tvTables.Nodes.Clear();
+
+            //根节点
+            TreeNode firstNode = new TreeNode();
+            firstNode.Text = "数据库";
+            tvTables.Nodes.Add(firstNode);
+
+            string dbType = cbDbType.Text;
+            string connUrl = txtConnectionUrl.Text;
+
+            new CircleProgressBarDialog().Start(new EventHandler<CircleProgressBarEventArgs>(delegate(object senders, CircleProgressBarEventArgs args)
                 {
-                    if (bar.CancellationPending)
+                    try
                     {
-                        break;
+                        DBSchema.DbSchema schemaObj = DBSchema.DbSchemaFactory.Create(dbType, connUrl);
+
+                        if (schemaObj != null)
+                        {
+                            List<SuperCodeFactory.DBSchema.SchemaObject.SOTable> tableList = schemaObj.GetTableList(schemaObj.GetDatabaseList()[0]);
+
+                            if (tableList != null)
+                            {
+                                foreach (SuperCodeFactory.DBSchema.SchemaObject.SOTable table in tableList)
+                                {
+                                    //报告进度
+                                    ((CircleProgressBarDialog)senders).ReportProgress((int)(((float)tableList.IndexOf(table) / (float)tableList.Count) * 100), 100);
+
+                                    //添加表格节点
+                                    TreeNode tableNode = new TreeNode();
+                                    tableNode.Text = "表格(" + table.Name + ")";
+                                    tableNode.Tag = table;
+                                    
+                                    if (IsHandleCreated)
+                                    {
+                                        Invoke(new MethodInvoker(delegate()
+                                        {
+                                            firstNode.Nodes.Add(tableNode);
+                                        }));
+                                    }
+
+                                    if (table.ColumnList != null)
+                                    {
+                                        foreach (SuperCodeFactory.DBSchema.SchemaObject.SOColumn col in table.ColumnList)
+                                        {
+                                            //添加字段节点
+                                            TreeNode columnNode = new TreeNode();
+                                            columnNode.Text = "字段(" + col.Name + "," + col.DataType + ")";
+                                            columnNode.Tag = col;
+                                            
+                                            if (IsHandleCreated)
+                                            {
+                                                Invoke(new MethodInvoker(delegate()
+                                                {
+                                                    tableNode.Nodes.Add(columnNode);
+                                                }));
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            //展开根节点
+                            if (IsHandleCreated)
+                            {
+                                Invoke(new MethodInvoker(delegate()
+                                    {
+                                        firstNode.Expand();
+                                    }));                                
+                            }
+                        }
+
+                        try
+                        {
+                            Thread.Sleep(100);
+                        }
+                        catch (Exception ex) { }
+                        
                     }
-
-                    bar.ReportProgress(k, 100);
-                    Thread.Sleep(1000);
-                    bar.ReportInfo("当前值:" + k);
-                }
-            }));
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            bar.Stop();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            //System.Reflection.Assembly.LoadFrom(@"c:\System.Data.SQLite.dll");
-            try
-            {
-                DBSchema.DbSchema schemaObj = DBSchema.DbSchemaFactory.Create("System.Data.SQLite", "Data Source=c:\\myData1.db");
-                List<SuperCodeFactory.DBSchema.SchemaObject.SOTable> tableList = schemaObj.GetTableList(schemaObj.GetDatabaseList()[0]);
-                foreach (SuperCodeFactory.DBSchema.SchemaObject.SOTable table in tableList)
-                {
-                    System.Console.WriteLine(table.FullName);
-                    foreach (SuperCodeFactory.DBSchema.SchemaObject.SOColumn col in table.ColumnList)
+                    catch (Exception ex)
                     {
-                        System.Console.WriteLine(table.FullName + "---" + col.FullName + ",,,"+ col.DataType);
-                    }                    
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
+                        MessageBox.Show("操作失败！Ex:" + ex.ToString());
+                    }
+                }));            
         }
     }
 }
