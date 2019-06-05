@@ -1,9 +1,12 @@
-﻿using SuperCodeFactoryUILib.Forms;
+﻿using CSScriptLibrary;
+using SuperCodeFactory.DBSchema.SchemaObject;
+using SuperCodeFactoryUILib.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -112,6 +115,55 @@ namespace SuperCodeFactory
                         MessageBox.Show("操作失败！Ex:" + ex.ToString());
                     }
                 }));            
+        }
+
+        private void tvTables_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+
+        }
+
+        private void btnMakeAll_Click(object sender, EventArgs e)
+        {
+            if (tvTables.Nodes.Count >= 1 && tvTables.Nodes[0].Nodes.Count >= 1)
+            {
+                #region 准备表格字典
+                Dictionary<string, List<string[]>> tables = new Dictionary<string, List<string[]>>();
+                foreach (TreeNode tableNode in tvTables.Nodes[0].Nodes)
+                {
+                    //表名
+                    string tableName = ((SOTable)tableNode.Tag).Name;
+
+                    //列
+                    List<string[]> columns = new List<string[]>();
+                    foreach (TreeNode columnNode in tableNode.Nodes)
+                    {
+                        //输出字段信息
+                        columns.Add(new string[] { ((SOColumn)columnNode.Tag).Name, ((SOColumn)columnNode.Tag).DataType.ToString() });
+                    }
+
+                    //添加表格
+                    tables[tableName] = columns;
+                }
+                #endregion
+
+                if (fbdOutputDir.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    try
+                    {
+                        var make = CSScript.CreateFunc<string>(File.ReadAllText(Path.Combine(Application.StartupPath, @"Templetes\script\总体.cs")));
+                        string result = make(fbdOutputDir.SelectedPath, txtConnectionUrl.Text, tables);
+                        MessageBox.Show(result);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("生成错误！Ex:" + ex.ToString());
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("对不起，请先配置数据库连接！");
+            }
         }
     }
 }
