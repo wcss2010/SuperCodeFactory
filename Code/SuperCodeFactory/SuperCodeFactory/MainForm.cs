@@ -191,9 +191,49 @@ namespace SuperCodeFactory
                 {
                     try
                     {
-                        var make = CSScript.CreateFunc<string>(File.ReadAllText(Path.Combine(Application.StartupPath, @"Templetes\script\总体.cs")));
-                        string result = make(fbdOutputDir.SelectedPath, txtConnectionUrl.Text, tables);
-                        MessageBox.Show(result);
+                        CircleProgressBarDialog dialog = new CircleProgressBarDialog();
+                        dialog.Start(new EventHandler<CircleProgressBarEventArgs>(delegate(object senders, CircleProgressBarEventArgs args)
+                            {
+                                try
+                                {
+                                    ((CircleProgressBarDialog)senders).ReportProgress(10, 100);
+
+                                    try
+                                    {
+                                        Directory.CreateDirectory(fbdOutputDir.SelectedPath);
+                                    }
+                                    catch (Exception ex) { }
+
+                                    ((CircleProgressBarDialog)senders).ReportProgress(20, 100);
+
+                                    //复制目录
+                                    SuperCodeFactoryLib.Utilities.IOUtil.CopyDirectory(Path.Combine(Application.StartupPath, @"Templetes"), fbdOutputDir.SelectedPath, true);
+                                    
+                                    //删除脚本目录
+                                    try
+                                    {
+                                        Directory.Delete(Path.Combine(fbdOutputDir.SelectedPath, "script"), true);
+                                    }
+                                    catch (Exception ex) { }
+
+                                    ((CircleProgressBarDialog)senders).ReportProgress(60, 100);
+
+                                    #region 运行动态代码
+                                    var make = CSScript.CreateFunc<string>(File.ReadAllText(Path.Combine(Application.StartupPath, @"Templetes\script\总体.cs")));
+                                    string result = make(fbdOutputDir.SelectedPath, txtConnectionUrl.Text, tables);
+
+                                    ((CircleProgressBarDialog)senders).TopMost = false;
+                                    MessageBox.Show(result);
+                                    #endregion
+
+                                    ((CircleProgressBarDialog)senders).ReportProgress(100, 100);
+                                }
+                                catch (Exception ex)
+                                {
+                                    ((CircleProgressBarDialog)senders).TopMost = false;
+                                    MessageBox.Show("生成错误！Ex:" + ex.ToString());
+                                }
+                            }));
                     }
                     catch (Exception ex)
                     {
