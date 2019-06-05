@@ -37,7 +37,8 @@ namespace SuperCodeFactory
             string dbType = cbDbType.Text;
             string connUrl = txtConnectionUrl.Text;
 
-            new CircleProgressBarDialog().Start(new EventHandler<CircleProgressBarEventArgs>(delegate(object senders, CircleProgressBarEventArgs args)
+            CircleProgressBarDialog dialog = new CircleProgressBarDialog();
+            dialog.Start(new EventHandler<CircleProgressBarEventArgs>(delegate(object senders, CircleProgressBarEventArgs args)
                 {
                     try
                     {
@@ -107,6 +108,7 @@ namespace SuperCodeFactory
                     }
                     catch (Exception ex)
                     {
+                        dialog.TopMost = false;
                         MessageBox.Show("操作失败！Ex:" + ex.ToString());
                     }
                 }));            
