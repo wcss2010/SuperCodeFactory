@@ -39,9 +39,12 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tvTables = new System.Windows.Forms.TreeView();
             this.tcCodes = new System.Windows.Forms.TabControl();
-            this.tpCodes = new System.Windows.Forms.TabPage();
+            this.tpNormal = new System.Windows.Forms.TabPage();
             this.btnMakeAll = new System.Windows.Forms.Button();
             this.fbdOutputDir = new System.Windows.Forms.FolderBrowserDialog();
+            this.tpOneTable = new System.Windows.Forms.TabPage();
+            this.txtNormal = new System.Windows.Forms.RichTextBox();
+            this.txtOneTable = new System.Windows.Forms.RichTextBox();
             this.plTopBar.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -50,6 +53,8 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.tcCodes.SuspendLayout();
+            this.tpNormal.SuspendLayout();
+            this.tpOneTable.SuspendLayout();
             this.SuspendLayout();
             // 
             // plTopBar
@@ -172,7 +177,8 @@
             // 
             // tcCodes
             // 
-            this.tcCodes.Controls.Add(this.tpCodes);
+            this.tcCodes.Controls.Add(this.tpNormal);
+            this.tcCodes.Controls.Add(this.tpOneTable);
             this.tcCodes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tcCodes.Location = new System.Drawing.Point(0, 0);
             this.tcCodes.Name = "tcCodes";
@@ -180,15 +186,16 @@
             this.tcCodes.Size = new System.Drawing.Size(680, 465);
             this.tcCodes.TabIndex = 0;
             // 
-            // tpCodes
+            // tpNormal
             // 
-            this.tpCodes.Location = new System.Drawing.Point(4, 22);
-            this.tpCodes.Name = "tpCodes";
-            this.tpCodes.Padding = new System.Windows.Forms.Padding(3);
-            this.tpCodes.Size = new System.Drawing.Size(672, 439);
-            this.tpCodes.TabIndex = 1;
-            this.tpCodes.Text = "DB代码生成";
-            this.tpCodes.UseVisualStyleBackColor = true;
+            this.tpNormal.Controls.Add(this.txtNormal);
+            this.tpNormal.Location = new System.Drawing.Point(4, 22);
+            this.tpNormal.Name = "tpNormal";
+            this.tpNormal.Padding = new System.Windows.Forms.Padding(3);
+            this.tpNormal.Size = new System.Drawing.Size(672, 439);
+            this.tpNormal.TabIndex = 1;
+            this.tpNormal.Text = "常用代码";
+            this.tpNormal.UseVisualStyleBackColor = true;
             // 
             // btnMakeAll
             // 
@@ -200,6 +207,35 @@
             this.btnMakeAll.Text = "生成所有";
             this.btnMakeAll.UseVisualStyleBackColor = true;
             this.btnMakeAll.Click += new System.EventHandler(this.btnMakeAll_Click);
+            // 
+            // tpOneTable
+            // 
+            this.tpOneTable.Controls.Add(this.txtOneTable);
+            this.tpOneTable.Location = new System.Drawing.Point(4, 22);
+            this.tpOneTable.Name = "tpOneTable";
+            this.tpOneTable.Padding = new System.Windows.Forms.Padding(3);
+            this.tpOneTable.Size = new System.Drawing.Size(672, 439);
+            this.tpOneTable.TabIndex = 2;
+            this.tpOneTable.Text = "单表代码";
+            this.tpOneTable.UseVisualStyleBackColor = true;
+            // 
+            // txtNormal
+            // 
+            this.txtNormal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtNormal.Location = new System.Drawing.Point(3, 3);
+            this.txtNormal.Name = "txtNormal";
+            this.txtNormal.Size = new System.Drawing.Size(666, 433);
+            this.txtNormal.TabIndex = 0;
+            this.txtNormal.Text = "";
+            // 
+            // txtOneTable
+            // 
+            this.txtOneTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtOneTable.Location = new System.Drawing.Point(3, 3);
+            this.txtOneTable.Name = "txtOneTable";
+            this.txtOneTable.Size = new System.Drawing.Size(666, 433);
+            this.txtOneTable.TabIndex = 1;
+            this.txtOneTable.Text = "";
             // 
             // MainForm
             // 
@@ -221,6 +257,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.tcCodes.ResumeLayout(false);
+            this.tpNormal.ResumeLayout(false);
+            this.tpOneTable.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -231,7 +269,7 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TreeView tvTables;
         private System.Windows.Forms.TabControl tcCodes;
-        private System.Windows.Forms.TabPage tpCodes;
+        private System.Windows.Forms.TabPage tpNormal;
         private System.Windows.Forms.ComboBox cbDbType;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtConnectionUrl;
@@ -241,6 +279,9 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnMakeAll;
         private System.Windows.Forms.FolderBrowserDialog fbdOutputDir;
+        private System.Windows.Forms.TabPage tpOneTable;
+        private System.Windows.Forms.RichTextBox txtNormal;
+        private System.Windows.Forms.RichTextBox txtOneTable;
 
     }
 }

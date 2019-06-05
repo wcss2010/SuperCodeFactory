@@ -119,7 +119,47 @@ namespace SuperCodeFactory
 
         private void tvTables_AfterSelect(object sender, TreeViewEventArgs e)
         {
+            if (e.Node.Tag != null)
+            {
+                TreeNode tableNode = e.Node;
+                if (tableNode.Tag is SOColumn)
+                {
+                    tableNode = e.Node.Parent;
+                }
 
+                //表名
+                string tableName = ((SOTable)tableNode.Tag).Name;
+
+                //列
+                List<string[]> columns = new List<string[]>();
+                foreach (TreeNode columnNode in tableNode.Nodes)
+                {
+                    //输出字段信息
+                    columns.Add(new string[] { ((SOColumn)columnNode.Tag).Name, ((SOColumn)columnNode.Tag).DataType.ToString() });
+                }
+
+                //常用代码
+                try
+                {
+                    var make = CSScript.CreateFunc<string>(File.ReadAllText(Path.Combine(Application.StartupPath, @"Templetes\script\常用.cs")));
+                    txtNormal.Text = make(txtConnectionUrl.Text, tableName, columns);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("生成错误！Ex:" + ex.ToString());
+                }
+
+                //单表代码
+                try
+                {
+                    var make = CSScript.CreateFunc<string>(File.ReadAllText(Path.Combine(Application.StartupPath, @"Templetes\script\单表.cs")));
+                    txtOneTable.Text = make(txtConnectionUrl.Text, tableName, columns);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("生成错误！Ex:" + ex.ToString());
+                }
+            }
         }
 
         private void btnMakeAll_Click(object sender, EventArgs e)
