@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.plTopBar = new System.Windows.Forms.Panel();
+            this.plTopBar = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.txtConnectionUrl = new System.Windows.Forms.TextBox();
             this.btnGetTables = new System.Windows.Forms.Button();
@@ -71,8 +71,10 @@
             this.plTopBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.plTopBar.Location = new System.Drawing.Point(0, 0);
             this.plTopBar.Name = "plTopBar";
-            this.plTopBar.Size = new System.Drawing.Size(1025, 96);
+            this.plTopBar.Size = new System.Drawing.Size(1025, 123);
             this.plTopBar.TabIndex = 0;
+            this.plTopBar.TabStop = false;
+            this.plTopBar.Text = "操作区";
             // 
             // panel2
             // 
@@ -82,27 +84,29 @@
             this.panel2.Controls.Add(this.btnMakeAll);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(402, 0);
+            this.panel2.Location = new System.Drawing.Point(405, 17);
+            this.panel2.Margin = new System.Windows.Forms.Padding(0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(623, 96);
+            this.panel2.Padding = new System.Windows.Forms.Padding(10);
+            this.panel2.Size = new System.Drawing.Size(617, 103);
             this.panel2.TabIndex = 5;
             // 
             // txtConnectionUrl
             // 
             this.txtConnectionUrl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtConnectionUrl.Location = new System.Drawing.Point(103, 0);
+            this.txtConnectionUrl.Location = new System.Drawing.Point(113, 10);
             this.txtConnectionUrl.Multiline = true;
             this.txtConnectionUrl.Name = "txtConnectionUrl";
-            this.txtConnectionUrl.Size = new System.Drawing.Size(304, 96);
+            this.txtConnectionUrl.Size = new System.Drawing.Size(278, 83);
             this.txtConnectionUrl.TabIndex = 2;
             this.txtConnectionUrl.Text = "Data Source=";
             // 
             // btnGetTables
             // 
             this.btnGetTables.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnGetTables.Location = new System.Drawing.Point(407, 0);
+            this.btnGetTables.Location = new System.Drawing.Point(391, 10);
             this.btnGetTables.Name = "btnGetTables";
-            this.btnGetTables.Size = new System.Drawing.Size(91, 96);
+            this.btnGetTables.Size = new System.Drawing.Size(91, 83);
             this.btnGetTables.TabIndex = 3;
             this.btnGetTables.Text = "获得数据库中的所有表格";
             this.btnGetTables.UseVisualStyleBackColor = true;
@@ -111,9 +115,9 @@
             // btnScriptDir
             // 
             this.btnScriptDir.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnScriptDir.Location = new System.Drawing.Point(498, 0);
+            this.btnScriptDir.Location = new System.Drawing.Point(482, 10);
             this.btnScriptDir.Name = "btnScriptDir";
-            this.btnScriptDir.Size = new System.Drawing.Size(61, 96);
+            this.btnScriptDir.Size = new System.Drawing.Size(61, 83);
             this.btnScriptDir.TabIndex = 5;
             this.btnScriptDir.Text = "编辑代码生成脚本";
             this.btnScriptDir.UseVisualStyleBackColor = true;
@@ -122,9 +126,9 @@
             // btnMakeAll
             // 
             this.btnMakeAll.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnMakeAll.Location = new System.Drawing.Point(559, 0);
+            this.btnMakeAll.Location = new System.Drawing.Point(543, 10);
             this.btnMakeAll.Name = "btnMakeAll";
-            this.btnMakeAll.Size = new System.Drawing.Size(64, 96);
+            this.btnMakeAll.Size = new System.Drawing.Size(64, 83);
             this.btnMakeAll.TabIndex = 4;
             this.btnMakeAll.Text = "生成所有";
             this.btnMakeAll.UseVisualStyleBackColor = true;
@@ -133,9 +137,9 @@
             // label2
             // 
             this.label2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label2.Location = new System.Drawing.Point(0, 0);
+            this.label2.Location = new System.Drawing.Point(10, 10);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(103, 96);
+            this.label2.Size = new System.Drawing.Size(103, 83);
             this.label2.TabIndex = 0;
             this.label2.Text = "数据库连接代码：";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -151,9 +155,11 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Location = new System.Drawing.Point(3, 17);
+            this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(402, 96);
+            this.panel1.Padding = new System.Windows.Forms.Padding(10);
+            this.panel1.Size = new System.Drawing.Size(402, 103);
             this.panel1.TabIndex = 4;
             // 
             // txtClassAfter
@@ -232,7 +238,7 @@
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 96);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 123);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -242,7 +248,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tcCodes);
-            this.splitContainer1.Size = new System.Drawing.Size(1025, 473);
+            this.splitContainer1.Size = new System.Drawing.Size(1025, 446);
             this.splitContainer1.SplitterDistance = 341;
             this.splitContainer1.TabIndex = 1;
             // 
@@ -253,7 +259,7 @@
             this.tvTables.HideSelection = false;
             this.tvTables.Location = new System.Drawing.Point(0, 0);
             this.tvTables.Name = "tvTables";
-            this.tvTables.Size = new System.Drawing.Size(341, 473);
+            this.tvTables.Size = new System.Drawing.Size(341, 446);
             this.tvTables.TabIndex = 0;
             this.tvTables.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvTables_AfterSelect);
             // 
@@ -265,7 +271,7 @@
             this.tcCodes.Location = new System.Drawing.Point(0, 0);
             this.tcCodes.Name = "tcCodes";
             this.tcCodes.SelectedIndex = 0;
-            this.tcCodes.Size = new System.Drawing.Size(680, 473);
+            this.tcCodes.Size = new System.Drawing.Size(680, 446);
             this.tcCodes.TabIndex = 0;
             // 
             // tpNormal
@@ -274,7 +280,7 @@
             this.tpNormal.Location = new System.Drawing.Point(4, 22);
             this.tpNormal.Name = "tpNormal";
             this.tpNormal.Padding = new System.Windows.Forms.Padding(3);
-            this.tpNormal.Size = new System.Drawing.Size(672, 447);
+            this.tpNormal.Size = new System.Drawing.Size(672, 420);
             this.tpNormal.TabIndex = 1;
             this.tpNormal.Text = "常用代码";
             this.tpNormal.UseVisualStyleBackColor = true;
@@ -284,7 +290,7 @@
             this.txtNormal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtNormal.Location = new System.Drawing.Point(3, 3);
             this.txtNormal.Name = "txtNormal";
-            this.txtNormal.Size = new System.Drawing.Size(666, 441);
+            this.txtNormal.Size = new System.Drawing.Size(666, 414);
             this.txtNormal.TabIndex = 0;
             this.txtNormal.Text = "";
             // 
@@ -338,7 +344,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel plTopBar;
+        private System.Windows.Forms.GroupBox plTopBar;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TreeView tvTables;
         private System.Windows.Forms.TabControl tcCodes;
