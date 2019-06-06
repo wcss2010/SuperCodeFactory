@@ -189,11 +189,14 @@
             this.cbDbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbDbType.FormattingEnabled = true;
             this.cbDbType.Items.AddRange(new object[] {
+            "System.Data.Odbc",
             "System.Data.OleDb",
             "System.Data.OracleClient",
             "Oracle.ManagedDataAccess.Client",
             "System.Data.SQLite",
-            "MySql.Data.MySqlClient"});
+            "MySql.Data.MySqlClient",
+            "IBM.Data.DB2",
+            "FirebirdSql.Data.FirebirdClient"});
             this.cbDbType.Location = new System.Drawing.Point(87, 2);
             this.cbDbType.Name = "cbDbType";
             this.cbDbType.Size = new System.Drawing.Size(295, 20);
@@ -300,7 +303,7 @@
             this.tpOneTable.Location = new System.Drawing.Point(4, 22);
             this.tpOneTable.Name = "tpOneTable";
             this.tpOneTable.Padding = new System.Windows.Forms.Padding(3);
-            this.tpOneTable.Size = new System.Drawing.Size(672, 447);
+            this.tpOneTable.Size = new System.Drawing.Size(672, 420);
             this.tpOneTable.TabIndex = 2;
             this.tpOneTable.Text = "单表代码";
             this.tpOneTable.UseVisualStyleBackColor = true;
@@ -310,7 +313,7 @@
             this.txtOneTable.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtOneTable.Location = new System.Drawing.Point(3, 3);
             this.txtOneTable.Name = "txtOneTable";
-            this.txtOneTable.Size = new System.Drawing.Size(666, 441);
+            this.txtOneTable.Size = new System.Drawing.Size(666, 414);
             this.txtOneTable.TabIndex = 1;
             this.txtOneTable.Text = "";
             // 
