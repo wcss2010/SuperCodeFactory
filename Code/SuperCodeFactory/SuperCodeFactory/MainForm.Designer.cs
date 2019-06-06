@@ -28,15 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.plTopBar = new System.Windows.Forms.GroupBox();
+            this.plTopBar = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.txtConnectionUrl = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnGetTables = new System.Windows.Forms.Button();
             this.btnScriptDir = new System.Windows.Forms.Button();
             this.btnMakeAll = new System.Windows.Forms.Button();
-            this.btnGetTables = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.txtClassAfter = new System.Windows.Forms.TextBox();
+            this.txtClassBefore = new System.Windows.Forms.TextBox();
+            this.txtNameSpace = new System.Windows.Forms.TextBox();
             this.cbDbType = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tvTables = new System.Windows.Forms.TreeView();
@@ -65,9 +71,8 @@
             this.plTopBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.plTopBar.Location = new System.Drawing.Point(0, 0);
             this.plTopBar.Name = "plTopBar";
-            this.plTopBar.Size = new System.Drawing.Size(1025, 98);
+            this.plTopBar.Size = new System.Drawing.Size(1025, 96);
             this.plTopBar.TabIndex = 0;
-            this.plTopBar.TabStop = false;
             // 
             // panel2
             // 
@@ -77,47 +82,38 @@
             this.panel2.Controls.Add(this.btnMakeAll);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(225, 17);
+            this.panel2.Location = new System.Drawing.Point(402, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(797, 78);
+            this.panel2.Size = new System.Drawing.Size(623, 96);
             this.panel2.TabIndex = 5;
             // 
             // txtConnectionUrl
             // 
             this.txtConnectionUrl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtConnectionUrl.Location = new System.Drawing.Point(83, 0);
+            this.txtConnectionUrl.Location = new System.Drawing.Point(103, 0);
             this.txtConnectionUrl.Multiline = true;
             this.txtConnectionUrl.Name = "txtConnectionUrl";
-            this.txtConnectionUrl.Size = new System.Drawing.Size(498, 78);
+            this.txtConnectionUrl.Size = new System.Drawing.Size(304, 96);
             this.txtConnectionUrl.TabIndex = 2;
             this.txtConnectionUrl.Text = "Data Source=";
             // 
-            // label2
+            // btnGetTables
             // 
-            this.label2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label2.Location = new System.Drawing.Point(0, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 78);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "  连接代码：";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.cbDbType);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(3, 17);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(222, 78);
-            this.panel1.TabIndex = 4;
+            this.btnGetTables.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnGetTables.Location = new System.Drawing.Point(407, 0);
+            this.btnGetTables.Name = "btnGetTables";
+            this.btnGetTables.Size = new System.Drawing.Size(91, 96);
+            this.btnGetTables.TabIndex = 3;
+            this.btnGetTables.Text = "获得数据库中的所有表格";
+            this.btnGetTables.UseVisualStyleBackColor = true;
+            this.btnGetTables.Click += new System.EventHandler(this.btnGetTables_Click);
             // 
             // btnScriptDir
             // 
             this.btnScriptDir.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnScriptDir.Location = new System.Drawing.Point(672, 0);
+            this.btnScriptDir.Location = new System.Drawing.Point(498, 0);
             this.btnScriptDir.Name = "btnScriptDir";
-            this.btnScriptDir.Size = new System.Drawing.Size(61, 78);
+            this.btnScriptDir.Size = new System.Drawing.Size(61, 96);
             this.btnScriptDir.TabIndex = 5;
             this.btnScriptDir.Text = "编辑代码生成脚本";
             this.btnScriptDir.UseVisualStyleBackColor = true;
@@ -126,24 +122,61 @@
             // btnMakeAll
             // 
             this.btnMakeAll.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnMakeAll.Location = new System.Drawing.Point(733, 0);
+            this.btnMakeAll.Location = new System.Drawing.Point(559, 0);
             this.btnMakeAll.Name = "btnMakeAll";
-            this.btnMakeAll.Size = new System.Drawing.Size(64, 78);
+            this.btnMakeAll.Size = new System.Drawing.Size(64, 96);
             this.btnMakeAll.TabIndex = 4;
             this.btnMakeAll.Text = "生成所有";
             this.btnMakeAll.UseVisualStyleBackColor = true;
             this.btnMakeAll.Click += new System.EventHandler(this.btnMakeAll_Click);
             // 
-            // btnGetTables
+            // label2
             // 
-            this.btnGetTables.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnGetTables.Location = new System.Drawing.Point(581, 0);
-            this.btnGetTables.Name = "btnGetTables";
-            this.btnGetTables.Size = new System.Drawing.Size(91, 78);
-            this.btnGetTables.TabIndex = 3;
-            this.btnGetTables.Text = "获得数据库中的所有表格";
-            this.btnGetTables.UseVisualStyleBackColor = true;
-            this.btnGetTables.Click += new System.EventHandler(this.btnGetTables_Click);
+            this.label2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label2.Location = new System.Drawing.Point(0, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(103, 96);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "数据库连接代码：";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.txtClassAfter);
+            this.panel1.Controls.Add(this.txtClassBefore);
+            this.panel1.Controls.Add(this.txtNameSpace);
+            this.panel1.Controls.Add(this.cbDbType);
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(402, 96);
+            this.panel1.TabIndex = 4;
+            // 
+            // txtClassAfter
+            // 
+            this.txtClassAfter.Location = new System.Drawing.Point(87, 73);
+            this.txtClassAfter.Name = "txtClassAfter";
+            this.txtClassAfter.Size = new System.Drawing.Size(295, 21);
+            this.txtClassAfter.TabIndex = 2;
+            // 
+            // txtClassBefore
+            // 
+            this.txtClassBefore.Location = new System.Drawing.Point(87, 50);
+            this.txtClassBefore.Name = "txtClassBefore";
+            this.txtClassBefore.Size = new System.Drawing.Size(295, 21);
+            this.txtClassBefore.TabIndex = 2;
+            // 
+            // txtNameSpace
+            // 
+            this.txtNameSpace.Location = new System.Drawing.Point(87, 27);
+            this.txtNameSpace.Name = "txtNameSpace";
+            this.txtNameSpace.Size = new System.Drawing.Size(295, 21);
+            this.txtNameSpace.TabIndex = 2;
+            this.txtNameSpace.Text = "CodeFactory.DB";
             // 
             // cbDbType
             // 
@@ -155,16 +188,43 @@
             "Oracle.ManagedDataAccess.Client",
             "System.Data.SQLite",
             "MySql.Data.MySqlClient"});
-            this.cbDbType.Location = new System.Drawing.Point(3, 44);
+            this.cbDbType.Location = new System.Drawing.Point(87, 2);
             this.cbDbType.Name = "cbDbType";
-            this.cbDbType.Size = new System.Drawing.Size(211, 20);
+            this.cbDbType.Size = new System.Drawing.Size(295, 20);
             this.cbDbType.TabIndex = 1;
+            // 
+            // label5
+            // 
+            this.label5.Location = new System.Drawing.Point(7, 71);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(89, 23);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "  类名后缀：";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label4
+            // 
+            this.label4.Location = new System.Drawing.Point(7, 48);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(89, 23);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "  类名前缀：";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label3
+            // 
+            this.label3.Location = new System.Drawing.Point(7, 25);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(89, 23);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "  命名空间：";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(7, 12);
+            this.label1.Location = new System.Drawing.Point(7, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(207, 23);
+            this.label1.Size = new System.Drawing.Size(89, 23);
             this.label1.TabIndex = 0;
             this.label1.Text = "数据库类型：";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -172,7 +232,7 @@
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 98);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 96);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -182,7 +242,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tcCodes);
-            this.splitContainer1.Size = new System.Drawing.Size(1025, 471);
+            this.splitContainer1.Size = new System.Drawing.Size(1025, 473);
             this.splitContainer1.SplitterDistance = 341;
             this.splitContainer1.TabIndex = 1;
             // 
@@ -193,7 +253,7 @@
             this.tvTables.HideSelection = false;
             this.tvTables.Location = new System.Drawing.Point(0, 0);
             this.tvTables.Name = "tvTables";
-            this.tvTables.Size = new System.Drawing.Size(341, 471);
+            this.tvTables.Size = new System.Drawing.Size(341, 473);
             this.tvTables.TabIndex = 0;
             this.tvTables.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvTables_AfterSelect);
             // 
@@ -205,7 +265,7 @@
             this.tcCodes.Location = new System.Drawing.Point(0, 0);
             this.tcCodes.Name = "tcCodes";
             this.tcCodes.SelectedIndex = 0;
-            this.tcCodes.Size = new System.Drawing.Size(680, 471);
+            this.tcCodes.Size = new System.Drawing.Size(680, 473);
             this.tcCodes.TabIndex = 0;
             // 
             // tpNormal
@@ -214,7 +274,7 @@
             this.tpNormal.Location = new System.Drawing.Point(4, 22);
             this.tpNormal.Name = "tpNormal";
             this.tpNormal.Padding = new System.Windows.Forms.Padding(3);
-            this.tpNormal.Size = new System.Drawing.Size(672, 445);
+            this.tpNormal.Size = new System.Drawing.Size(672, 447);
             this.tpNormal.TabIndex = 1;
             this.tpNormal.Text = "常用代码";
             this.tpNormal.UseVisualStyleBackColor = true;
@@ -224,7 +284,7 @@
             this.txtNormal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtNormal.Location = new System.Drawing.Point(3, 3);
             this.txtNormal.Name = "txtNormal";
-            this.txtNormal.Size = new System.Drawing.Size(666, 439);
+            this.txtNormal.Size = new System.Drawing.Size(666, 441);
             this.txtNormal.TabIndex = 0;
             this.txtNormal.Text = "";
             // 
@@ -234,7 +294,7 @@
             this.tpOneTable.Location = new System.Drawing.Point(4, 22);
             this.tpOneTable.Name = "tpOneTable";
             this.tpOneTable.Padding = new System.Windows.Forms.Padding(3);
-            this.tpOneTable.Size = new System.Drawing.Size(672, 439);
+            this.tpOneTable.Size = new System.Drawing.Size(672, 447);
             this.tpOneTable.TabIndex = 2;
             this.tpOneTable.Text = "单表代码";
             this.tpOneTable.UseVisualStyleBackColor = true;
@@ -244,7 +304,7 @@
             this.txtOneTable.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtOneTable.Location = new System.Drawing.Point(3, 3);
             this.txtOneTable.Name = "txtOneTable";
-            this.txtOneTable.Size = new System.Drawing.Size(666, 433);
+            this.txtOneTable.Size = new System.Drawing.Size(666, 441);
             this.txtOneTable.TabIndex = 1;
             this.txtOneTable.Text = "";
             // 
@@ -264,6 +324,7 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -277,7 +338,7 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox plTopBar;
+        private System.Windows.Forms.Panel plTopBar;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TreeView tvTables;
         private System.Windows.Forms.TabControl tcCodes;
@@ -295,6 +356,12 @@
         private System.Windows.Forms.RichTextBox txtNormal;
         private System.Windows.Forms.RichTextBox txtOneTable;
         private System.Windows.Forms.Button btnScriptDir;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtClassAfter;
+        private System.Windows.Forms.TextBox txtClassBefore;
+        private System.Windows.Forms.TextBox txtNameSpace;
 
     }
 }

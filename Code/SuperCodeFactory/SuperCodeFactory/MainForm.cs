@@ -17,6 +17,19 @@ namespace SuperCodeFactory
 {
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// 生成所有的脚本文件名
+        /// </summary>
+        private const string allScript = "生成所有.cs";
+        /// <summary>
+        /// 生成单表的脚本文件名
+        /// </summary>
+        private const string tableScript = "生成单表.cs";
+        /// <summary>
+        /// 生成常用的脚本文件名
+        /// </summary>        
+        private const string normalScript = "生成常用.cs";
+
         public MainForm()
         {
             InitializeComponent();
@@ -142,8 +155,8 @@ namespace SuperCodeFactory
                 //常用代码
                 try
                 {
-                    var make = CSScript.CreateFunc<string>(File.ReadAllText(Path.Combine(Application.StartupPath, @"Templetes\script\常用.cs")));
-                    txtNormal.Text = make(txtConnectionUrl.Text, tableName, columns);
+                    var make = CSScript.CreateFunc<string>(File.ReadAllText(Path.Combine(Application.StartupPath, @"Templetes\script\" + normalScript)));
+                    txtNormal.Text = make(cbDbType.Text, txtNameSpace.Text, txtClassBefore.Text, txtClassAfter.Text, txtConnectionUrl.Text, tableName, columns);
                 }
                 catch (Exception ex)
                 {
@@ -153,8 +166,8 @@ namespace SuperCodeFactory
                 //单表代码
                 try
                 {
-                    var make = CSScript.CreateFunc<string>(File.ReadAllText(Path.Combine(Application.StartupPath, @"Templetes\script\单表.cs")));
-                    txtOneTable.Text = make(txtConnectionUrl.Text, tableName, columns);
+                    var make = CSScript.CreateFunc<string>(File.ReadAllText(Path.Combine(Application.StartupPath, @"Templetes\script\" + tableScript)));
+                    txtNormal.Text = make(cbDbType.Text, txtNameSpace.Text, txtClassBefore.Text, txtClassAfter.Text, txtConnectionUrl.Text, tableName, columns);
                 }
                 catch (Exception ex)
                 {
@@ -219,8 +232,8 @@ namespace SuperCodeFactory
                                     ((CircleProgressBarDialog)senders).ReportProgress(60, 100);
 
                                     #region 运行动态代码
-                                    var make = CSScript.CreateFunc<string>(File.ReadAllText(Path.Combine(Application.StartupPath, @"Templetes\script\总体.cs")));
-                                    string result = make(fbdOutputDir.SelectedPath, txtConnectionUrl.Text, tables);
+                                    var make = CSScript.CreateFunc<string>(File.ReadAllText(Path.Combine(Application.StartupPath, @"Templetes\script\" + allScript)));
+                                    string result = make(cbDbType.Text, txtNameSpace.Text, txtClassBefore.Text, txtClassAfter.Text, fbdOutputDir.SelectedPath, txtConnectionUrl.Text, tables);
 
                                     ((CircleProgressBarDialog)senders).TopMost = false;
                                     MessageBox.Show(result);
