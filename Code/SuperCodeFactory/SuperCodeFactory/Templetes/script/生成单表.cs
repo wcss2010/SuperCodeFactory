@@ -11,5 +11,5 @@
         /// <returns>生成后的代码</returns>
         string make(string dbType,string namespaceStr,string classBefore,string classAfter,string connectionUrl, string tableName, System.Collections.Generic.List<string[]> columns)
         {
-            return "常用";
+            return "单表";
         }

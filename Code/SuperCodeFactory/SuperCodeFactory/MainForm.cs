@@ -167,7 +167,7 @@ namespace SuperCodeFactory
                 try
                 {
                     var make = CSScript.CreateFunc<string>(File.ReadAllText(Path.Combine(Application.StartupPath, @"Templetes\script\" + tableScript)));
-                    txtNormal.Text = make(cbDbType.Text, txtNameSpace.Text, txtClassBefore.Text, txtClassAfter.Text, txtConnectionUrl.Text, tableName, columns);
+                    txtOneTable.Text = make(cbDbType.Text, txtNameSpace.Text, txtClassBefore.Text, txtClassAfter.Text, txtConnectionUrl.Text, tableName, columns);
                 }
                 catch (Exception ex)
                 {
@@ -178,6 +178,12 @@ namespace SuperCodeFactory
 
         private void btnMakeAll_Click(object sender, EventArgs e)
         {
+            string dbTypeStr = cbDbType.Text;
+            string nameSpaceStr = txtNameSpace.Text;
+            string classBeforeStr = txtClassBefore.Text;
+            string classAfterStr = txtClassAfter.Text;
+            string connectionUrlStr = txtConnectionUrl.Text;
+
             if (tvTables.Nodes.Count >= 1 && tvTables.Nodes[0].Nodes.Count >= 1)
             {
                 #region 准备表格字典
@@ -233,18 +239,30 @@ namespace SuperCodeFactory
 
                                     #region 运行动态代码
                                     var make = CSScript.CreateFunc<string>(File.ReadAllText(Path.Combine(Application.StartupPath, @"Templetes\script\" + allScript)));
-                                    string result = make(cbDbType.Text, txtNameSpace.Text, txtClassBefore.Text, txtClassAfter.Text, fbdOutputDir.SelectedPath, txtConnectionUrl.Text, tables);
+                                    string result = make(dbTypeStr, nameSpaceStr, classBeforeStr, classAfterStr, fbdOutputDir.SelectedPath, connectionUrlStr, tables);
 
-                                    ((CircleProgressBarDialog)senders).TopMost = false;
-                                    MessageBox.Show(result);
+                                    if (IsHandleCreated)
+                                    {
+                                        Invoke(new MethodInvoker(delegate()
+                                            {
+                                                ((CircleProgressBarDialog)senders).TopMost = false;
+                                                MessageBox.Show(result);
+                                            }));
+                                    }
                                     #endregion
 
                                     ((CircleProgressBarDialog)senders).ReportProgress(100, 100);
                                 }
                                 catch (Exception ex)
                                 {
-                                    ((CircleProgressBarDialog)senders).TopMost = false;
-                                    MessageBox.Show("生成错误！Ex:" + ex.ToString());
+                                    if (IsHandleCreated)
+                                    {
+                                        Invoke(new MethodInvoker(delegate()
+                                        {
+                                            ((CircleProgressBarDialog)senders).TopMost = false;
+                                            MessageBox.Show("生成错误！Ex:" + ex.ToString());
+                                        }));
+                                    }
                                 }
                             }));
                     }
