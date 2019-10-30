@@ -32,9 +32,10 @@
             this.plTopBar = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.txtConnectionUrl = new System.Windows.Forms.TextBox();
-            this.btnGetTables = new System.Windows.Forms.Button();
-            this.btnScriptDir = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.btnMakeAll = new System.Windows.Forms.Button();
+            this.btnScriptDir = new System.Windows.Forms.Button();
+            this.btnGetTables = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtClassAfter = new System.Windows.Forms.TextBox();
@@ -53,9 +54,9 @@
             this.tpOneTable = new System.Windows.Forms.TabPage();
             this.txtOneTable = new System.Windows.Forms.RichTextBox();
             this.fbdOutputDir = new System.Windows.Forms.FolderBrowserDialog();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.plTopBar.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -64,7 +65,6 @@
             this.tcCodes.SuspendLayout();
             this.tpNormal.SuspendLayout();
             this.tpOneTable.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // plTopBar
@@ -77,7 +77,6 @@
             this.plTopBar.Size = new System.Drawing.Size(1025, 133);
             this.plTopBar.TabIndex = 0;
             this.plTopBar.TabStop = false;
-            this.plTopBar.Text = "操作区";
             // 
             // panel2
             // 
@@ -102,16 +101,27 @@
             this.txtConnectionUrl.TabIndex = 2;
             this.txtConnectionUrl.Text = "Data Source=";
             // 
-            // btnGetTables
+            // panel3
             // 
-            this.btnGetTables.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnGetTables.Location = new System.Drawing.Point(0, 0);
-            this.btnGetTables.Name = "btnGetTables";
-            this.btnGetTables.Size = new System.Drawing.Size(150, 30);
-            this.btnGetTables.TabIndex = 3;
-            this.btnGetTables.Text = "获得数据库中的所有表格";
-            this.btnGetTables.UseVisualStyleBackColor = true;
-            this.btnGetTables.Click += new System.EventHandler(this.btnGetTables_Click);
+            this.panel3.Controls.Add(this.btnMakeAll);
+            this.panel3.Controls.Add(this.btnScriptDir);
+            this.panel3.Controls.Add(this.btnGetTables);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel3.Location = new System.Drawing.Point(469, 10);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(150, 93);
+            this.panel3.TabIndex = 6;
+            // 
+            // btnMakeAll
+            // 
+            this.btnMakeAll.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnMakeAll.Location = new System.Drawing.Point(0, 60);
+            this.btnMakeAll.Name = "btnMakeAll";
+            this.btnMakeAll.Size = new System.Drawing.Size(150, 33);
+            this.btnMakeAll.TabIndex = 4;
+            this.btnMakeAll.Text = "生成所有";
+            this.btnMakeAll.UseVisualStyleBackColor = true;
+            this.btnMakeAll.Click += new System.EventHandler(this.btnMakeAll_Click);
             // 
             // btnScriptDir
             // 
@@ -124,16 +134,16 @@
             this.btnScriptDir.UseVisualStyleBackColor = true;
             this.btnScriptDir.Click += new System.EventHandler(this.btnScriptDir_Click);
             // 
-            // btnMakeAll
+            // btnGetTables
             // 
-            this.btnMakeAll.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnMakeAll.Location = new System.Drawing.Point(0, 60);
-            this.btnMakeAll.Name = "btnMakeAll";
-            this.btnMakeAll.Size = new System.Drawing.Size(150, 33);
-            this.btnMakeAll.TabIndex = 4;
-            this.btnMakeAll.Text = "生成所有";
-            this.btnMakeAll.UseVisualStyleBackColor = true;
-            this.btnMakeAll.Click += new System.EventHandler(this.btnMakeAll_Click);
+            this.btnGetTables.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnGetTables.Location = new System.Drawing.Point(0, 0);
+            this.btnGetTables.Name = "btnGetTables";
+            this.btnGetTables.Size = new System.Drawing.Size(150, 30);
+            this.btnGetTables.TabIndex = 3;
+            this.btnGetTables.Text = "获得数据库中的所有表格";
+            this.btnGetTables.UseVisualStyleBackColor = true;
+            this.btnGetTables.Click += new System.EventHandler(this.btnGetTables_Click);
             // 
             // label2
             // 
@@ -302,7 +312,7 @@
             this.tpOneTable.Location = new System.Drawing.Point(4, 22);
             this.tpOneTable.Name = "tpOneTable";
             this.tpOneTable.Padding = new System.Windows.Forms.Padding(3);
-            this.tpOneTable.Size = new System.Drawing.Size(672, 420);
+            this.tpOneTable.Size = new System.Drawing.Size(672, 410);
             this.tpOneTable.TabIndex = 2;
             this.tpOneTable.Text = "单表代码";
             this.tpOneTable.UseVisualStyleBackColor = true;
@@ -312,20 +322,9 @@
             this.txtOneTable.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtOneTable.Location = new System.Drawing.Point(3, 3);
             this.txtOneTable.Name = "txtOneTable";
-            this.txtOneTable.Size = new System.Drawing.Size(666, 414);
+            this.txtOneTable.Size = new System.Drawing.Size(666, 404);
             this.txtOneTable.TabIndex = 1;
             this.txtOneTable.Text = "";
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.btnMakeAll);
-            this.panel3.Controls.Add(this.btnScriptDir);
-            this.panel3.Controls.Add(this.btnGetTables);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(469, 10);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(150, 93);
-            this.panel3.TabIndex = 6;
             // 
             // MainForm
             // 
@@ -337,11 +336,12 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "SuperCodeFactory";
+            this.Text = "SuperCodeFactory V1.0";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.plTopBar.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel3.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -351,7 +351,6 @@
             this.tcCodes.ResumeLayout(false);
             this.tpNormal.ResumeLayout(false);
             this.tpOneTable.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
