@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Collections\KeyedList.cs" />
+    <Compile Include="Collections\SerialDictionary.cs" />
     <Compile Include="Collections\SynchronizedDictionary.cs" />
     <Compile Include="Collections\SynchronizedLinkedList.cs" />
     <Compile Include="Collections\SynchronizedList.cs" />
