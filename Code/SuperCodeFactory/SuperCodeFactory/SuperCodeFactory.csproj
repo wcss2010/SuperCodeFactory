@@ -147,6 +147,7 @@
     <Content Include="Templetes\library\CSScriptLibrary.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Templetes\library\EmitMapper.dll" />
     <Content Include="Templetes\library\FirebirdSql.Data.FirebirdClient.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -159,6 +160,7 @@
     <Content Include="Templetes\library\ICSharpCode.SharpZipLib.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Templetes\library\LiteDB.dll" />
     <Content Include="Templetes\library\MySql.Data.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
