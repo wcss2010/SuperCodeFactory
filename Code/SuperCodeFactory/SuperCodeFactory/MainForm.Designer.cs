@@ -205,7 +205,9 @@
             "System.Data.OracleClient",
             "Oracle.ManagedDataAccess.Client",
             "System.Data.SQLite",
-            "MySql.Data.MySqlClient"});
+            "MySql.Data.MySqlClient",
+            "IBM.Data.DB2",
+            "FirebirdSql.Data.FirebirdClient"});
             this.cbDbType.Location = new System.Drawing.Point(87, 2);
             this.cbDbType.Name = "cbDbType";
             this.cbDbType.Size = new System.Drawing.Size(295, 20);
