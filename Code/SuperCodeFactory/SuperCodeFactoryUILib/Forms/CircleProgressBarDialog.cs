@@ -91,11 +91,11 @@ namespace SuperCodeFactoryUILib.Forms
             //设置事件
             doWork = doworkEvent;
 
-            //开始运持
-            bwProgressReport.RunWorkerAsync();
-
             //显示窗体
             Show();
+
+            //开始运持
+            bwProgressReport.RunWorkerAsync();
         }
 
         /// <summary>
