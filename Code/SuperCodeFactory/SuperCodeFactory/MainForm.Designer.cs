@@ -338,7 +338,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "SuperCodeFactory V1.1";
+            this.Text = "SuperCodeFactory V1.2";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.plTopBar.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
